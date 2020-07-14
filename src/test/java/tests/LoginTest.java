@@ -1,3 +1,5 @@
+package tests;
+
 import pages.DashboardPage;
 import pages.LoginPage;
 import driver.DriverManager;

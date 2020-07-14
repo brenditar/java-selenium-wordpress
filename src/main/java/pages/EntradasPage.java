@@ -25,19 +25,13 @@ public class EntradasPage {
         System.out.println("Se escribió titulo del post");
 
         WebElement publicar = DriverManager.Instance.findElement((By.cssSelector(".editor-post-publish-button__button")));
-        System.out.println("Publicar");
         publicar.click();
-        System.out.println("lo publique");
+        System.out.println("Se hizo click en publicar");
 
         WebElement panel = DriverManager.Instance.findElement(By.cssSelector("#editor > div > div > div.components-navigate-regions > div > div.block-editor-editor-skeleton__body > div.block-editor-editor-skeleton__publish > div > div > div"));
         WebElement salvar = panel.findElement(By.cssSelector(".editor-post-publish-button__button"));
         salvar.click();
-        // FIXME replace for wait
-        try {
-            Thread.sleep(5000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+        DriverManager.forceSleep(5000);
     }
 
 

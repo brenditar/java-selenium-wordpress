@@ -18,13 +18,7 @@ public class LoginPage {
     }
 
     public static void populateLogin(String user, String password) {
-        // FIXME replace for wait
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
-        WebElement userInput = DriverManager.Instance.findElement(By.id("user_login"));
+        WebElement userInput = DriverManager.elementoClicable(By.id("user_login"), 50);
         userInput.sendKeys(user);
         WebElement userPassword = DriverManager.Instance.findElement(By.id("user_pass"));
         userPassword.sendKeys(password);

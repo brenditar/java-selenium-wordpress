@@ -1,3 +1,5 @@
+package commons;
+
 import pages.LoginPage;
 import driver.DriverManager;
 import org.testng.annotations.AfterClass;
@@ -10,7 +12,6 @@ public class TestBase {
         DriverManager.Inicializar();
         LoginPage.open();
         LoginPage.login("BRENDA001", "Juani-2019");
-
     }
 
     @AfterClass
