@@ -1,8 +1,9 @@
+package pages;
+
+import driver.DriverManager;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
-
-import java.util.concurrent.TimeUnit;
 
 public class LoginPage {
 
@@ -11,11 +12,18 @@ public class LoginPage {
     }
 
     public static void buttonConfirm() {
+
         WebElement confirm = DriverManager.Instance.findElement((By.id("wp-submit")));
         confirm.click();
     }
 
     public static void populateLogin(String user, String password) {
+        // FIXME replace for wait
+        try {
+            Thread.sleep(1000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
         WebElement userInput = DriverManager.Instance.findElement(By.id("user_login"));
         userInput.sendKeys(user);
         WebElement userPassword = DriverManager.Instance.findElement(By.id("user_pass"));
@@ -27,11 +35,6 @@ public class LoginPage {
         buttonConfirm();
     }
 
-    public static void closeChrome() {
-        DriverManager.Instance.manage().timeouts().implicitlyWait(50000, TimeUnit.SECONDS);
-        DriverManager.Instance.close();
-        DriverManager.Instance.quit();
-    }
 
     public static void recoveryPassword(String user) {
         WebElement passwordForget = DriverManager.Instance.findElement(By.cssSelector("p#nav :only-of-type"));
@@ -49,13 +52,12 @@ public class LoginPage {
 
     public static void rememberme(String user, String password) {
         WebElement checkRememberMe = DriverManager.Instance.findElement(By.id("rememberme"));
-
         populateLogin(user, password);
         checkRememberMe.click();
         buttonConfirm();
     }
 
-    public static void logOut(){
+    public static void logOut() {
         WebElement profile = DriverManager.Instance.findElement(By.partialLinkText("BRENDA001"));
         String perfil = profile.getText();
         System.out.println(perfil);
@@ -70,12 +72,12 @@ public class LoginPage {
 
     }
 
-    public static boolean pageLogin(){
+    public static boolean pageLogin() {
         WebElement messageLogin = DriverManager.Instance.findElement(By.cssSelector("#login > p.message"));
         String mensaje = messageLogin.getText();
         System.out.println(mensaje);
 
-        if (mensaje.contains("desconectado")){
+        if (mensaje.contains("desconectado")) {
             return true;
         }
         return false;

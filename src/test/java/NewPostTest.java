@@ -1,28 +1,16 @@
-import org.junit.AfterClass;
+import pages.EntradasPage;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.Test;
 
-public class NewPostTest {
-    @BeforeClass
-    public static void init() {
-        DriverManager.Inicializar();
-    }
+
+public class NewPostTest extends TestBase {
 
     @Test
     public void newPostOK() {
-        LoginPage.open();
-        LoginPage.login("BRENDA001", "Juani-2019");
-
-        EntradasPage.newPost();
-        //Assert.assertTrue("Post creado exitosamente", EntradasPage.mensajeCreacionPost());
-
-        //EntradasPage.returnToDasboard();
+        EntradasPage.newPost("Titulo del Post");
+        EntradasPage.goBack();
+        Assert.assertTrue("Post creado exitosamente", EntradasPage.postCreado("Titulo del Post"));
     }
 
-    @AfterClass
-    public static void tearDown() {
-        LoginPage.closeChrome();
-    }
 }
 

@@ -1,11 +1,16 @@
-import org.junit.AfterClass;
+import pages.DashboardPage;
+import pages.LoginPage;
+import driver.DriverManager;
 import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.testng.annotations.AfterClass;
+import org.testng.annotations.BeforeClass;
+import org.testng.annotations.Test;
+
 
 public class LoginTest {
+
     @BeforeClass
-    public static void init() {
+    public void iniciar() {
         DriverManager.Inicializar();
     }
 
@@ -14,12 +19,17 @@ public class LoginTest {
         LoginPage.open();
         LoginPage.login("BRENDA001", "Juani-2019");
         Assert.assertTrue("Login failed", DashboardPage.loginSuccesfully());
+        System.out.println("TEST1 PASS OK");
+        LoginPage.logOut();
     }
 
     @Test
-    public void logOutOK(){
+    public void logOutOK() {
+        LoginPage.open();
+        LoginPage.login("BRENDA001", "Juani-2019");
         LoginPage.logOut();
         Assert.assertTrue("Logout failed", LoginPage.pageLogin());
+        System.out.println("TEST2 PASS OK");
     }
 
     @Test
@@ -32,12 +42,17 @@ public class LoginTest {
 
     @Test
     public void forgetPassword() {
+        LoginPage.open();
         LoginPage.recoveryPassword("BRENDA001");
         Assert.assertTrue("Recovery password show error", DashboardPage.recoveryPasswordError());
+        DashboardPage.pagePrincipal();
     }
 
-    @AfterClass
-    public static void tearDown() {
-        LoginPage.closeChrome();
-    }
+
+     @AfterClass
+     public void cerrar() {
+         DriverManager.Finalizar();
+     }
+
+
 }
