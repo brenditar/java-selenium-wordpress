@@ -1,3 +1,6 @@
+package tests;
+
+import commons.TestBase;
 import pages.EntradasPage;
 import org.junit.Assert;
 import org.testng.annotations.Test;

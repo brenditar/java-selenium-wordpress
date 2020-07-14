@@ -6,7 +6,7 @@ import org.openqa.selenium.By;
 public class Seleccionar {
 
     public static void opcion(By selector){
-        DriverManager.Instance.findElement(selector).click();
+        DriverManager.elementoClicable(selector, 10).click();
     }
 }
 
