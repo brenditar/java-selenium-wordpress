@@ -36,7 +36,7 @@ public class DriverManager {
 
     public  static void  forceSleep(int timeout) {
         try {
-            Thread.sleep(5000);
+            Thread.sleep(timeout);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }

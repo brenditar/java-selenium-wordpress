@@ -6,6 +6,11 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 
 public class LoginPage {
+    public static By confirmButton = By.id("wp-submit");
+    public static By userField = By.id("user_login");
+    public static By passwordField = By.id("user_pass");
+    public static By checkboxRememberme = By.id("rememberme");
+    public static By obtenerButton = By.id("wp-submit");
 
     public static void open() {
         DriverManager.Instance.navigate().to("http://localhost:8000/wp-admin/");
@@ -13,14 +18,15 @@ public class LoginPage {
 
     public static void buttonConfirm() {
 
-        WebElement confirm = DriverManager.Instance.findElement((By.id("wp-submit")));
+        WebElement confirm = DriverManager.Instance.findElement((confirmButton));
         confirm.click();
     }
 
     public static void populateLogin(String user, String password) {
-        WebElement userInput = DriverManager.elementoClicable(By.id("user_login"), 50);
+        WebElement userInput = DriverManager.elementoClicable(userField, 50);
+        DriverManager.forceSleep(50);
         userInput.sendKeys(user);
-        WebElement userPassword = DriverManager.Instance.findElement(By.id("user_pass"));
+        WebElement userPassword = DriverManager.Instance.findElement(passwordField);
         userPassword.sendKeys(password);
     }
 
@@ -36,16 +42,16 @@ public class LoginPage {
         System.out.println(boton);
         passwordForget.click();
 
-        WebElement inputUser = DriverManager.Instance.findElement(By.id("user_login"));
+        WebElement inputUser = DriverManager.Instance.findElement(userField);
         inputUser.sendKeys(user);
 
-        WebElement buttonObtener = DriverManager.Instance.findElement(By.id("wp-submit"));
+        WebElement buttonObtener = DriverManager.Instance.findElement(obtenerButton);
         buttonObtener.click();
 
     }
 
     public static void rememberme(String user, String password) {
-        WebElement checkRememberMe = DriverManager.Instance.findElement(By.id("rememberme"));
+        WebElement checkRememberMe = DriverManager.Instance.findElement(checkboxRememberme);
         populateLogin(user, password);
         checkRememberMe.click();
         buttonConfirm();

@@ -4,6 +4,7 @@ import pages.LoginPage;
 import driver.DriverManager;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
+import static data.Login.*;
 
 public class TestBase {
 
@@ -11,7 +12,7 @@ public class TestBase {
     public void init() {
         DriverManager.Inicializar();
         LoginPage.open();
-        LoginPage.login("BRENDA001", "Juani-2019");
+        LoginPage.login(USERNAME, PASSWORD);
     }
 
     @AfterClass

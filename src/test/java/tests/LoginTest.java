@@ -7,6 +7,7 @@ import org.junit.Assert;
 import org.testng.annotations.AfterClass;
 import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Test;
+import static data.Login.*;
 
 
 public class LoginTest {
@@ -19,7 +20,7 @@ public class LoginTest {
     @Test
     public void loginOk() {
         LoginPage.open();
-        LoginPage.login("BRENDA001", "Juani-2019");
+        LoginPage.login(USERNAME, PASSWORD);
         Assert.assertTrue("Login failed", DashboardPage.loginSuccesfully());
         System.out.println("TEST1 PASS OK");
         LoginPage.logOut();
@@ -28,7 +29,7 @@ public class LoginTest {
     @Test
     public void logOutOK() {
         LoginPage.open();
-        LoginPage.login("BRENDA001", "Juani-2019");
+        LoginPage.login(USERNAME, PASSWORD);
         LoginPage.logOut();
         Assert.assertTrue("Logout failed", LoginPage.pageLogin());
         System.out.println("TEST2 PASS OK");
@@ -37,7 +38,7 @@ public class LoginTest {
     @Test
     public void loginRememberMe() {
         LoginPage.open();
-        LoginPage.rememberme("BRENDA001", "Juani-2019");
+        LoginPage.rememberme(USERNAME, PASSWORD);
         Assert.assertTrue("Login failed", DashboardPage.loginSuccesfully());
         LoginPage.logOut();
     }
@@ -45,7 +46,7 @@ public class LoginTest {
     @Test
     public void forgetPassword() {
         LoginPage.open();
-        LoginPage.recoveryPassword("BRENDA001");
+        LoginPage.recoveryPassword(USERNAME);
         Assert.assertTrue("Recovery password show error", DashboardPage.recoveryPasswordError());
         DashboardPage.pagePrincipal();
     }
