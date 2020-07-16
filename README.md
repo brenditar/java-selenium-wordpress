@@ -11,3 +11,5 @@ Descargar allure del siguiente [link](https://launchpad.net/~qameta/+archive/ubu
     $ mvn clean test # correr tests
     $ mvn site # recopilar informacion de tests para mostrar en allure
     $ allure open target/site/allure-maven-plugin
+    otra forma de levantar los reportes de allure
+    $ allure serve target/surefire-reports
